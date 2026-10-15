@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tactile Mechanical Calculator</title>
+  <!-- Google Fonts for Keycap Legends and LCD Display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="cream">
+
+  <main class="workspace">
+    <div class="calculator-case">
+      
+      <!-- Top Hardware Control Bar -->
+      <header class="hardware-bar">
+        <div class="brand-badge">
+          <span class="status-led" id="sound-led"></span>
+          <span class="brand-name">THOCK-84</span>
+        </div>
+
+        <div class="hardware-switches">
+          <!-- Switch Sound Selector -->
+          <div class="pill-switch" role="group" aria-label="Switch Sound Profile">
+            <button type="button" class="switch-opt active" data-sound="creamy" title="Deep Lubed Linear Sound">Creamy</button>
+            <button type="button" class="switch-opt" data-sound="mechanical" title="Crisp Tactile Click Sound">Clicky</button>
+            <button type="button" class="switch-opt" data-sound="mute" title="Mute Audio">Mute</button>
+          </div>
+
+          <!-- Theme Toggle Button -->
+          <button type="button" class="theme-btn" id="theme-toggle" title="Toggle Keycap Colorway">
+            <span class="theme-dot"></span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Recessed LCD Display -->
+      <section class="lcd-bezel">
+        <div class="lcd-screen">
+          <div class="lcd-top-row">
+            <span class="audio-profile-tag" id="profile-indicator">SW: CREAMY LINEAR</span>
+            <div class="lcd-expression" id="expression-display"></div>
+          </div>
+          <div class="lcd-main-value" id="main-display">0</div>
+        </div>
+      </section>
+
+      <!-- Mechanical Keycap Matrix -->
+      <section class="switch-plate" id="keypad">
+        <!-- Row 1 -->
+        <button class="keycap key-accent" data-action="clear" data-key="Escape" data-size="heavy">
+          <span class="cap-top">AC</span>
+        </button>
+        <button class="keycap key-mod" data-action="delete" data-key="Backspace">
+          <span class="cap-top">DEL</span>
+        </button>
+        <button class="keycap key-mod" data-action="percent" data-key="%">
+          <span class="cap-top">%</span>
+        </button>
+        <button class="keycap key-op" data-action="operator" data-value="/" data-key="/">
+          <span class="cap-top">÷</span>
+        </button>
+
+        <!-- Row 2 -->
+        <button class="keycap key-alpha" data-action="number" data-value="7" data-key="7">
+          <span class="cap-top">7</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="8" data-key="8">
+          <span class="cap-top">8</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="9" data-key="9">
+          <span class="cap-top">9</span>
+        </button>
+        <button class="keycap key-op" data-action="operator" data-value="*" data-key="*">
+          <span class="cap-top">×</span>
+        </button>
+
+        <!-- Row 3 -->
+        <button class="keycap key-alpha" data-action="number" data-value="4" data-key="4">
+          <span class="cap-top">4</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="5" data-key="5">
+          <span class="cap-top">5</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="6" data-key="6">
+          <span class="cap-top">6</span>
+        </button>
+        <button class="keycap key-op" data-action="operator" data-value="-" data-key="-">
+          <span class="cap-top">−</span>
+        </button>
+
+        <!-- Row 4 -->
+        <button class="keycap key-alpha" data-action="number" data-value="1" data-key="1">
+          <span class="cap-top">1</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="2" data-key="2">
+          <span class="cap-top">2</span>
+        </button>
+        <button class="keycap key-alpha" data-action="number" data-value="3" data-key="3">
+          <span class="cap-top">3</span>
+        </button>
+        <button class="keycap key-op" data-action="operator" data-value="+" data-key="+">
+          <span class="cap-top">+</span>
+        </button>
+
+        <!-- Row 5 -->
+        <button class="keycap key-alpha span-2" data-action="number" data-value="0" data-key="0" data-size="heavy">
+          <span class="cap-top">0</span>
+        </button>
+        <button class="keycap key-alpha" data-action="decimal" data-value="." data-key=".">
+          <span class="cap-top">.</span>
+        </button>
+        <button class="keycap key-enter" data-action="calculate" data-key="Enter" data-size="heavy">
+          <span class="cap-top">=</span>
+        </button>
+      </section>
+
+    </div>
+
+    <footer class="keyboard-hint">
+      Tip: Use your physical keyboard or Numpad for full mechanical sound & key travel
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+/* ==========================================================================
+   THEME VARIABLES (Retro Cream 9009 & Dark Mecha)
+   ========================================================================== */
+:root,
+[data-theme="cream"] {
+  --bg-desk: #d6cfc2;
+  --bg-gradient: radial-gradient(circle at 50% 25%, #e5dfd3 0%, #c4bdb0 100%);
+  
+  /* Chassis / Case */
+  --case-bg: #e8e2d5;
+  --case-border-light: #f7f4ed;
+  --case-border-dark: #b8b0a0;
+  --case-shadow: 
+    0 30px 60px -15px rgba(45, 40, 32, 0.45),
+    0 12px 24px -8px rgba(45, 40, 32, 0.3),
+    inset 0 2px 3px var(--case-border-light),
+    inset 0 -4px 6px var(--case-border-dark);
+
+  --plate-bg: #22201e;
+  --text-muted: #5e5950;
+
+  /* Recessed LCD Screen */
+  --lcd-bg: #8c9683;
+  --lcd-text: #1d241b;
+  --lcd-subtext: rgba(29, 36, 27, 0.62);
+  --lcd-glow: inset 0 4px 10px rgba(0, 0, 0, 0.35);
+
+  /* Alpha Keycaps (Numbers) */
+  --alpha-surface: linear-gradient(145deg, #f3eee4, #faf7f2);
+  --alpha-side: #c7bfb0;
+  --alpha-text: #2c2925;
+  --alpha-rim: #ffffff;
+
+  /* Modifier Keycaps (DEL, %, Operators) */
+  --mod-surface: linear-gradient(145deg, #c6bfb1, #d5cfc2);
+  --mod-side: #9a9386;
+  --mod-text: #2c2925;
+  --mod-rim: #e6e1d6;
+
+  /* Accent Keycap (AC) */
+  --accent-surface: linear-gradient(145deg, #d66853, #e07662);
+  --accent-side: #9e4332;
+  --accent-text: #ffffff;
+  --accent-rim: #eb9483;
+
+  /* Enter Keycap (=) */
+  --enter-surface: linear-gradient(145deg, #6b8e78, #789c85);
+  --enter-side: #496654;
+  --enter-text: #ffffff;
+  --enter-rim: #96b5a1;
+}
+
+[data-theme="dark"] {
+  --bg-desk: #121318;
+  --bg-gradient: radial-gradient(circle at 50% 25%, #232733 0%, #101218 100%);
+
+  /* Chassis / Case */
+  --case-bg: #262934;
+  --case-border-light: #393e4f;
+  --case-border-dark: #171920;
+  --case-shadow: 
+    0 32px 64px -12px rgba(0, 0, 0, 0.75),
+    0 14px 28px -8px rgba(0, 0, 0, 0.6),
+    inset 0 2px 2px var(--case-border-light),
+    inset 0 -4px 6px var(--case-border-dark);
+
+  --plate-bg: #111318;
+  --text-muted: #949ab0;
+
+  /* Recessed OLED/Backlit LCD Screen */
+  --lcd-bg: #161b22;
+  --lcd-text: #6ee7b7;
+  --lcd-subtext: rgba(110, 231, 183, 0.55);
+  --lcd-glow: inset 0 4px 12px rgba(0, 0, 0, 0.75), 0 0 12px rgba(110, 231, 183, 0.08);
+
+  /* Alpha Keycaps */
+  --alpha-surface: linear-gradient(145deg, #323746, #3b4152);
+  --alpha-side: #1d2029;
+  --alpha-text: #eceff4;
+  --alpha-rim: #4b5267;
+
+  /* Modifier Keycaps */
+  --mod-surface: linear-gradient(145deg, #232733, #2b303e);
+  --mod-side: #14171f;
+  --mod-text: #88c0d0;
+  --mod-rim: #383e50;
+
+  /* Accent Keycap (AC) */
+  --accent-surface: linear-gradient(145deg, #bf616a, #cc6e77);
+  --accent-side: #823940;
+  --accent-text: #ffffff;
+  --accent-rim: #d98a92;
+
+  /* Enter Keycap (=) */
+  --enter-surface: linear-gradient(145deg, #d08770, #dc937c);
+  --enter-side: #945642;
+  --enter-text: #1c1f26;
+  --enter-rim: #e8af9d;
+}
+
+/* ==========================================================================
+   BASE RESET & LAYOUT
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg-desk);
+  background-image: var(--bg-gradient);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  padding: 1.5rem;
+  transition: background 0.35s ease;
+}
+
+.workspace {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+/* ==========================================================================
+   CALCULATOR CHASSIS
+   ========================================================================== */
+.calculator-case {
+  width: 100%;
+  background: var(--case-bg);
+  border-radius: 26px;
+  padding: 22px;
+  box-shadow: var(--case-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Top Hardware Bar */
+.hardware-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding: 0 4px;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-led {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 8px #4ade80;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.status-led.muted {
+  background: #ef4444;
+  box-shadow: 0 0 6px #ef4444;
+}
+
+.brand-name {
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+}
+
+.hardware-switches {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pill-switch {
+  display: flex;
+  background: rgba(0, 0, 0, 0.12);
+  padding: 3px;
+  border-radius: 9px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+.switch-opt {
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: inherit;
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.switch-opt.active {
+  background: var(--case-bg);
+  color: var(--alpha-text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.theme-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.theme-btn:active {
+  transform: scale(0.92);
+}
+
+.theme-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3eee4 50%, #262934 50%);
+  border: 1.5px solid var(--text-muted);
+}
+
+/* ==========================================================================
+   RECESSED LCD DISPLAY
+   ========================================================================== */
+.lcd-bezel {
+  background: var(--plate-bg);
+  padding: 6px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.lcd-screen {
+  background: var(--lcd-bg);
+  border-radius: 11px;
+  padding: 14px 16px;
+  min-height: 98px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--lcd-glow);
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.lcd-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 20px;
+}
+
+.audio-profile-tag {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--lcd-subtext);
+  border: 1px solid var(--lcd-subtext);
+  padding: 1px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.lcd-expression {
+  font-size: 0.85rem;
+  color: var(--lcd-subtext);
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lcd-main-value {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--lcd-text);
+  text-align: right;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.lcd-main-value::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   MECHANICAL SWITCH PLATE & SCULPTED KEYCAPS
+   ========================================================================== */
+.switch-plate {
+  background: var(--plate-bg);
+  padding: 12px;
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  box-shadow: 
+    inset 0 4px 10px rgba(0, 0, 0, 0.75),
+    0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Keycap Outer Base (3D Skirt) */
+.keycap {
+  --cap-surface: var(--alpha-surface);
+  --cap-side: var(--alpha-side);
+  --cap-text: var(--alpha-text);
+  --cap-rim: var(--alpha-rim);
+
+  position: relative;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
+  background: var(--cap-side);
+  padding: 4px 5px 8px 5px;
+  cursor: pointer;
+  outline: none;
+  /* 6px physical bottom ledge + drop shadow onto switch plate */
+  box-shadow: 
+    0 6px 0 var(--cap-side),
+    0 9px 10px rgba(0, 0, 0, 0.55);
+  transition: 
+    transform 0.055s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.055s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Sculpted Concave Dish on top of Keycap */
+.cap-top {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: var(--cap-surface);
+  color: var(--cap-text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  box-shadow: 
+    inset 0 1.5px 1px var(--cap-rim),
+    inset 0 -2px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* Keycap Color Variants */
+.keycap.key-mod,
+.keycap.key-op {
+  --cap-surface: var(--mod-surface);
+  --cap-side: var(--mod-side);
+  --cap-text: var(--mod-text);
+  --cap-rim: var(--mod-rim);
+}
+
+.keycap.key-op .cap-top {
+  font-size: 1.35rem;
+}
+
+.keycap.key-accent {
+  --cap-surface: var(--accent-surface);
+  --cap-side: var(--accent-side);
+  --cap-text: var(--accent-text);
+  --cap-rim: var(--accent-rim);
+}
+
+.keycap.key-enter {
+  --cap-surface: var(--enter-surface);
+  --cap-side: var(--enter-side);
+  --cap-text: var(--enter-text);
+  --cap-rim: var(--enter-rim);
+}
+
+/* Active Operator Highlight */
+.keycap.key-op.active-op .cap-top {
+  filter: brightness(1.12);
+  box-shadow: 
+    inset 0 0 0 2px var(--cap-text),
+    inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 2U Wide Keycap (0) */
+.keycap.span-2 {
+  grid-column: span 2;
+}
+
+/* Physical Key Travel State (5px bottom-out) */
+.keycap.is-pressed {
+  transform: translateY(5px);
+  box-shadow: 
+    0 1px 0 var(--cap-side),
+    0 2px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Footer Hint */
+.keyboard-hint {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: center;
+  opacity: 0.85;
+}
+
+@media (max-width: 400px) {
+  .calculator-case {
+    padding: 16px;
+  }
+  .switch-plate {
+    gap: 10px;
+    padding: 10px;
+  }
+  .keycap {
+    height: 54px;
+  }
+}
